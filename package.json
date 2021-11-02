@@ -1,0 +1,54 @@
+{
+  "name": "jsconfgen",
+  "version": "0.0.0",
+  "description": "Generate config files (YAML, JSON) from a JavaScript file",
+  "type": "module",
+  "exports": "./dist/main.js",
+  "types": "./dist/main.d.ts",
+  "author": "Mgenware (https://github.com/mgenware)",
+  "homepage": "https://github.com/mgenware/jsconfgen",
+  "bugs": "https://github.com/mgenware/jsconfgen/issues",
+  "bin": {
+    "jsconfgen": "./dist/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mgenware/jsconfgen"
+  },
+  "license": "MIT",
+  "scripts": {
+    "r": "daizong",
+    "test": "daizong build"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.ts",
+    "dist/**/*.html",
+    "dist/**/*.css",
+    "dist/**/*.map"
+  ],
+  "devDependencies": {
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.9.2",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
+    "daizong": "^0.15.3",
+    "eslint": "^7.32.0",
+    "eslint-config-mgenware": "^0.2.0",
+    "eslint-plugin-import": "^2.24.2",
+    "mgenware-tsconfig-node": "^14.0.2",
+    "mocha": "^9.1.1",
+    "source-map-support": "^0.5.20",
+    "tempy": "^2.0.0",
+    "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "@types/js-yaml": "^4.0.4",
+    "arg": "^5.0.1",
+    "catch-err-msg": "^1.0.0",
+    "js-yaml": "^4.1.0"
+  }
+}
