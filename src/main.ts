@@ -14,23 +14,36 @@ function normalizeImport(path: string): string {
   return path;
 }
 
-export default async function convert(format: string, src: string, dest: string) {
+export interface Options {
+  header?: string;
+  footer?: string;
+}
+
+export default async function convert(format: string, src: string, dest: string, opt?: Options) {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const srcData = (await import(normalizeImport(src)))?.default ?? '';
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let destData = '';
+  let destText = '';
   switch (format.toLowerCase()) {
     case 'json':
-      destData = JSON.stringify(srcData, null, 2);
+      destText = JSON.stringify(srcData, null, 2);
       break;
 
     case 'yaml':
-      destData = yaml.dump(srcData);
+      destText = yaml.dump(srcData);
       break;
 
     default:
       throw new Error(`Unsupported format "${format}"`);
   }
   await mkdir(nodePath.dirname(dest), { recursive: true });
-  await writeFile(dest, destData);
+  // eslint-disable-next-line no-param-reassign
+  opt ??= {};
+  if (opt.header) {
+    destText = opt.header + destText;
+  }
+  if (opt.footer) {
+    destText += opt.footer;
+  }
+  await writeFile(dest, destText);
 }
